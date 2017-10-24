@@ -1,5 +1,7 @@
 package medium;
 
+import java.util.Arrays;
+
 public class Lit324 {
     // 将序列按: nums[0] < nums[1] > nums[2] < nums[3] 顺序进行排序
     // 只能满足首项满足条件才可以
@@ -34,6 +36,8 @@ public class Lit324 {
         if(!isac && begin != len-1 && nums[len-2] < nums[len-1]) swap(len-2,len-1,nums);
     }
 
+
+
     private void swap(int i,int j,int[] nums){
         if(i == j) return;
         int t = nums[i];
@@ -41,6 +45,18 @@ public class Lit324 {
         nums[j] = t;
     }
 
+    public void wiggleSort2(int[] nums){
+        Arrays.sort(nums);
+        int n = nums.length, mid = n%2==0?n/2-1:n/2;
+        int[] temp = Arrays.copyOf(nums, n);
+        int index = 0;
+        for(int i=0;i<=mid;i++){
+            nums[index] = temp[mid-i];
+            if(index+1<n)
+                nums[index+1] = temp[n-i-1];
+            index += 2;
+        }
+    }
 
     public static void main(String[] args){
 //        int[] nums = {1,1,2,1,2,2,1};
