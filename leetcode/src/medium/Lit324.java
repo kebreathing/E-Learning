@@ -50,6 +50,8 @@ public class Lit324 {
         int n = nums.length, mid = n%2==0?n/2-1:n/2;
         int[] temp = Arrays.copyOf(nums, n);
         int index = 0;
+        // 先将中间大小的元素放置，再放较大的元素
+        // 之后再放最小的元素
         for(int i=0;i<=mid;i++){
             nums[index] = temp[mid-i];
             if(index+1<n)
