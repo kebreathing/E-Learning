@@ -7,49 +7,32 @@ public class Lit210 {
     // numCourses: 课程数量
     // prerequisites: 修课条件
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-        if(numCourses == 0) return null;
-
-        int idx = 0;
-        int[] orders = new int[numCourses];
-        Set<Integer> nopre = new HashSet<>();
-        Map<Integer,LinkedList<Integer>> haspre = new HashMap<>();
-
-        for(int i = 0; i < numCourses; i++)
-            nopre.add(i);
-
-        for(int[] req : prerequisites){
-            if (!haspre.containsKey(req[0])) haspre.put(req[0],new LinkedList<>());
-            haspre.get(req[0]).add(req[1]);
-            nopre.remove(req[0]);
+        List<List<Integer>> adj = new ArrayList<>(numCourses);
+        for (int i = 0; i < numCourses; i++) adj.add(i, new ArrayList<>());
+        for (int i = 0; i < prerequisites.length; i++) adj.get(prerequisites[i][1]).add(prerequisites[i][0]);
+        boolean[] visited = new boolean[numCourses];
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < numCourses; i++) {
+            if (!topologicalSort(adj, i, stack, visited, new boolean[numCourses])) return new int[0];
         }
-
-        if(nopre.isEmpty()) return null;
-
-        // 存在无条件修学课程
-        for(int c : nopre)
-            orders[idx++] = c;
-
-        while(!nopre.isEmpty()){
-
-            List<Integer> _nopre = new LinkedList<>();
-            for(int pre : nopre){
-                // 遍历Map
-                for(int key: haspre.keySet()){
-                    // 存在该课程，删除
-                    if(haspre.get(key).isEmpty()) continue;
-                    if(haspre.get(key).contains(pre)) haspre.get(key).remove(pre);
-                    if(haspre.get(key).isEmpty())     _nopre.add(key);
-                }
-            }
-
-            nopre.clear();
-            for(int c : _nopre) {
-                nopre.add(c);
-                orders[idx++] = c;
-            }
+        int i = 0;
+        int[] result = new int[numCourses];
+        while (!stack.isEmpty()) {
+            result[i++] = stack.pop();
         }
+        return result;
+    }
 
-        return idx == orders.length?orders:null;
+    private boolean topologicalSort(List<List<Integer>> adj, int v, Stack<Integer> stack, boolean[] visited, boolean[] isLoop) {
+        if (visited[v]) return true;
+        if (isLoop[v]) return false;
+        isLoop[v] = true;
+        for (Integer u : adj.get(v)) {
+            if (!topologicalSort(adj, u, stack, visited, isLoop)) return false;
+        }
+        visited[v] = true;
+        stack.push(v);
+        return true;
     }
 
     public static void main(String[] args){
