@@ -1,8 +1,6 @@
-package easy;
+package medium;
 
-import java.util.Map;
-
-public class Lit39_2 {
+public class Lit264 {
 
     // 找到第N个Ugly Number
     // 1, 2, 3, 4, 5
@@ -94,7 +92,7 @@ public class Lit39_2 {
     }
 
     public static void main(String[] args){
-        Lit39_2 lit = new Lit39_2();
+        Lit264 lit = new Lit264();
         System.out.println(lit.uglyNum(10));
     }
 }
