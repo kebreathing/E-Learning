@@ -14,9 +14,9 @@ public class InverseofF28 {
     public InverseofF28() { }
 
     public void cal(int[] fx){
-        System.out.println("*************************************************");
+//        System.out.println("*************************************************");
         System.out.println("The inverse of [ " + list2String(arr2List(fx))+ " ]: " + list2String(calInverse(fx)));
-        System.out.println("*************************************************\n");
+//        System.out.println("*************************************************\n");
     }
 
     /**
@@ -151,8 +151,27 @@ public class InverseofF28 {
 
     public static void main(String[] args){
         InverseofF28 iof = new InverseofF28();
-        iof.cal(new int[] {7,4,2,0});
+
         iof.cal(new int[] {0});
+        iof.cal(new int[] {0,1});
+        iof.cal(new int[] {0,1,2});
+        iof.cal(new int[] {0,1,2,4});
+//        iof.cal(new int[] {0,1,2,4,6});  // 5
+        iof.cal(new int[] {0,1,2,4,5});
+        iof.cal(new int[] {0,1,2,4,5,7});
+        iof.cal(new int[] {0,1,3});
+        iof.cal(new int[] {0,1,3,5});
+//        iof.cal(new int[] {0,1,3,5,7});  // 10
+        iof.cal(new int[] {0,2,4,6});
+        iof.cal(new int[] {0,2,4});
+        iof.cal(new int[] {0,2});
+        iof.cal(new int[] {0,3,5,7});
+        iof.cal(new int[] {0,3,5});     // 15
+        iof.cal(new int[] {0,3});
+        iof.cal(new int[] {0,4});
+        iof.cal(new int[] {0,5});
+        iof.cal(new int[] {0,6});       // 20
+        iof.cal(new int[] {7,4,2,0});
     }
 
 }
