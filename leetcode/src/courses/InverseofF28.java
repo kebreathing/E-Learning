@@ -31,13 +31,15 @@ public class InverseofF28 {
         List<EulidExtend> es = new ArrayList<>();
         es.add(new EulidExtend(-1,mx,null,new int[]{0},null));
         es.add(new EulidExtend(0,fx,null,null,new int[]{0}));
-
+//        printEulid(es.get(0));
+//        printEulid(es.get(1));
         int len;
         while((len = es.size()) > 0){
             // means: rx = 1
             if(es.get(es.size() - 1).rx.get(0) == 0 && es.get(es.size()-1).rx.size() == 1)
                 break;
             es.add(mod(es.get(len-2), es.get(len-1)));
+//            printEulid(es.get(es.size()-1));
         }
 
         return es.get(es.size()-1).wx;
@@ -58,19 +60,18 @@ public class InverseofF28 {
                 rxb.set(i, rxb.get(i) + diff);
 
             // rxa - rxb'
-            int ai = 0, bi = 0;
-            while (ai < rxa.size() && bi < rxa.size()) {
-                while (bi < rxb.size() && rxb.get(bi) < rxa.get(ai)) bi++;
-                while (ai < rxa.size() && rxa.get(ai) < rxb.get(bi)) ai++;
-                if (rxa.get(ai) == rxb.get(bi)) {
-                    rxa.remove(ai);
-                    rxb.remove(bi);
-                }
-            }
+            // 删除相同元素
+            Set<Integer> rxa_set = new HashSet<>(rxa);
+            Set<Integer> rxb_set = new HashSet<>(rxb);
+            // 删除两者重复集
+            rxa_set.removeAll(rxb);
+            rxb_set.removeAll(rxa);
+            rxb_set.addAll(rxa_set); // 并集
 
+            rxa.clear();
             // (*)rx = rxa + rxb' 最后一轮
             // (*)ax = rxa + rxb' 非最后一轮
-            for (int i : rxb) rxa.add(i);
+            for (int i : rxb_set) rxa.add(i);
 
             // 记录 (*)qx
             qx.add(diff);
@@ -156,12 +157,12 @@ public class InverseofF28 {
         iof.cal(new int[] {0,1});
         iof.cal(new int[] {0,1,2});
         iof.cal(new int[] {0,1,2,4});
-//        iof.cal(new int[] {0,1,2,4,6});  // 5
+        iof.cal(new int[] {0,1,2,4,6});  // 5 --
         iof.cal(new int[] {0,1,2,4,5});
         iof.cal(new int[] {0,1,2,4,5,7});
         iof.cal(new int[] {0,1,3});
         iof.cal(new int[] {0,1,3,5});
-//        iof.cal(new int[] {0,1,3,5,7});  // 10
+        iof.cal(new int[] {0,1,3,5,7});  // 10  --
         iof.cal(new int[] {0,2,4,6});
         iof.cal(new int[] {0,2,4});
         iof.cal(new int[] {0,2});
