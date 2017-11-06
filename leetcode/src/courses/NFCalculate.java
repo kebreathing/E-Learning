@@ -226,12 +226,16 @@ public class NFCalculate {
 //        nfc.nf_w(arr2List(nums2));    //x3 x7 x10 x11 x9^-1 x4^-1
 //        nfc.nf_w(arr2List(nums3));    //x3 x7 x10 x4^-1
 //        nfc.nf_w(arr2List(nums4));    //x3 x9^-1 x4^-1
-        nfc.nf_w(arr2List(nums5));     //x3 x8 x10^-1 x6^-1 x4^-1
-        nfc.nf_w(arr2List(nums6));     //x2 x8 x10^-1 x4^-1 x4^-1 x1^-1
+//        nfc.nf_w(arr2List(nums5));     //x3 x8 x10^-1 x6^-1 x4^-1
+//        nfc.nf_w(arr2List(nums6));     //x2 x8 x10^-1 x4^-1 x4^-1 x1^-1
 //        nfc.nf_w(arr2List(nums7));
-        nfc.nf_w(arr2List(nums8));
+//        nfc.nf_w(arr2List(nums8));
 //        nfc.nf_w(arr2List(new int[]{5,3}));  // 3 6
 //        nfc.nf_w(arr2List(new int[]{-5,3})); // 3 -6
 //        nfc.nf_w(arr2List(new int[]{-3,-5}));// -6 -3
     }
 }
+
+// R
+// -1 0 1
+// x0  x0^-1
