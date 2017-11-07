@@ -1,6 +1,11 @@
 package courses;
+/**
+ * Author: 龙东恒 Chris
+ * Student No: 1701210892
+ */
 
 import java.util.*;
+
 
 // 求域F28上任意元素的逆
 public class InverseofF28 {
@@ -14,9 +19,8 @@ public class InverseofF28 {
     public InverseofF28() { }
 
     public void cal(int[] fx){
-//        System.out.println("*************************************************");
-        System.out.println("The inverse of [ " + list2String(arr2List(fx))+ " ]: " + list2String(calInverse(fx)));
-//        System.out.println("*************************************************\n");
+        System.out.println("The inverse of [ " + list2String(arr2List(fx))+ " ]: " +
+                "" + list2String(calInverse(fx)));
     }
 
     /**
