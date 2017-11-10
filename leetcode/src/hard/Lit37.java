@@ -96,12 +96,3 @@ public class Lit37 {
         println(board);
     }
 }
-
-
-select_destinations(){
-    _schudle() {
-        _get_all_hosts(){
-
-        }
-    }
-}
