@@ -7,7 +7,7 @@ import os
 import Exception
 from collections import namedtuple
 
-csv_path = '/Users/chris/Downloads/data/stock data/'
+csv_path = 'F:/codes/java/stock data/'
 csv_file = csv_path + 'sh600000.csv'
 Stock = namedtuple('Stock', ['type', 'code', 'date', 'open', 'high', 'low', 'close', 'volume', 'money', 'earnings'])
 
@@ -43,9 +43,9 @@ def max_stock_with_code(code=None, year=None, month=None, stocks=None):
     max_earning = 0.0
     max_stock = []
     for stock in stocks:
-        if year is not None and year != stock.date[0:4]:
+        if year is not None and year != int(stock.date[0:4]):
             continue
-        if month is not None and month != stock.date[5:7]:
+        if month is not None and month != int(stock.date[5:7]):
             continue
 
         if max_earning < stock.earnings:
@@ -146,14 +146,13 @@ def get_maxearning_in_yt(directory_path=None, save_path="./maxearnings.csv"):
 
 
 # 获得一个股票的2013、2014最大股票
-def get_max_of_a_stock(filename=None):
-    if filename is None:
+def get_max_of_a_stock(filepath=None, filename=None):
+    if filepath is None:
         raise Exception.EmptyParametersError("Directory Path")
 
-    stocks = read_csv(filename)
+    stocks = read_csv(filepath)
     stock2013 = max_stock_with_code(code=filename[:-2], year=2013, stocks=stocks)
     stock2014 = max_stock_with_code(code=filename[:-2], year=2014, stocks=stocks)
-
     return [stock2013, stock2014]
 
 
@@ -165,12 +164,12 @@ def get_max_of_all_stocks(directory_path, save_path="./stocks.csv"):
     stocks_with_max = []
     for parent, dicts, files in os.walk(directory_path):
         for file in files:
-            for stock in get_max_of_a_stock(parent + file):
+            for stock in get_max_of_a_stock(parent + file, file):
                 stocks_with_max.append(stock)
 
     write_stocks_csv(save_path, stocks_with_max, "All Stocks Max Earning.")
 
 
-get_stocks_in_ym(directory_path=csv_path)
-get_maxearning_in_yt(directory_path=csv_path)
+# get_stocks_in_ym(directory_path=csv_path)
+# get_maxearning_in_yt(directory_path=csv_path)
 get_max_of_all_stocks(directory_path=csv_path)
