@@ -21,13 +21,20 @@ public class Lit260 {
             diff ^= num;
         }
         // Get its last set bit
+        // 负数在二进制中的表达：先求反码（取反），求补码（反码+1）
+        // 该数的二进制和其补码求和&操作，是什么意思？找到不同的位置么？
+        // 分组？
         diff &= -diff;
+
         // Pass 2 :
         int[] rets = {0, 0}; // this array stores the two numbers we will return
         for (int num : nums) {
+            // 这个已经是在分组了！！
             if ((num & diff) == 0) // the bit is not set
+                // 此组为：该位置为1的
                 rets[0] ^= num;
             else // the bit is set
+                // 此组为：不为1的
                 rets[1] ^= num;
 
         }
