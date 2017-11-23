@@ -1,16 +1,6 @@
 package easy;
 
 
-
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int x) { val = x; }
-}
-
-
-
 public class Lit671 {
 
     public int findSecondMinimumValue(TreeNode root) {

@@ -12,10 +12,10 @@ public class Lit435 {
     // [1,2] [1,6] [2,10] [3,7] [4,8] [7,9]
     // [1,10] [2,4] [5,9]
     // 排序 分类 递归判断大小
-    public int eraseOverlapIntervals(Interval[] intervals) {
+    public int eraseOverlapIntervals(Lit264.Interval[] intervals) {
         // Interval 排序
         Map<Integer,Integer> map = new HashMap<>();
-        for(Interval inl : intervals){
+        for(Lit264.Interval inl : intervals){
             if(!map.containsKey(inl.start))
                 map.put(inl.start,inl.end);
             else
@@ -51,7 +51,7 @@ public class Lit435 {
 
 
     // 思路都是：选取最小的！
-    public int eraseOverlapIntervals2(Interval[] intervals) {
+    public int eraseOverlapIntervals2(Lit264.Interval[] intervals) {
         if (intervals.length == 0)  return 0;
 
         Arrays.sort(intervals, new myComparator());
@@ -67,18 +67,18 @@ public class Lit435 {
         return intervals.length - count;
     }
 
-    class myComparator implements Comparator<Interval> {
-        public int compare(Interval a, Interval b) {
+    class myComparator implements Comparator<Lit264.Interval> {
+        public int compare(Lit264.Interval a, Lit264.Interval b) {
             return a.end - b.end;
         }
     }
     public static void main(String[] args){
-        Interval[] intervals = {
-                new Interval(3,4),
-                new Interval(1,4),
-                new Interval(1,3),
-                new Interval(1,2),
-                new Interval(2,3)
+        Lit264.Interval[] intervals = {
+                new Lit264.Interval(3,4),
+                new Lit264.Interval(1,4),
+                new Lit264.Interval(1,3),
+                new Lit264.Interval(1,2),
+                new Lit264.Interval(2,3)
         };
 
         Lit435 lit = new Lit435();
@@ -87,9 +87,3 @@ public class Lit435 {
 }
 
 
-class Interval {
-    int start;
-    int end;
-    public Interval() { start = 0; end = 0; }
-    public Interval(int s,int e) { start = s; end = e; }
-}
