@@ -30,19 +30,19 @@ public class LFunc {
         }
 
         // 获得 S-Box 中的替换结果
-        byte[] B = new byte[4];
-        for (int i = 0; i < word.length; i++) {
-            int[] rc = high4_low4(word[i]);
-            B[i] = SBox.getByte(rc[0], rc[1]);
-        }
+//        byte[] B = new byte[4];
+//        for (int i = 0; i < word.length; i++) {
+//            int[] rc = high4_low4(word[i]);
+//            B[i] = SBox.getByte(rc[0], rc[1]);
+//        }
 
+        byte[] B = word;
         // 字节拼接成字： 4 bytes -> 1 word -> 32 bits int
         int iB = bytes_to_int(B);
 
         // 循环移位和异或操作
-        int ilB = 0;
-        ilB ^= rotate_left(iB, 2, 32) ^ rotate_left(iB, 10, 32);
-        ilB ^= rotate_left(iB, 18, 32) ^ rotate_left(iB, 24, 32);
+        int ilB = iB ^rotate_left(iB, 2, 32) ^ rotate_left(iB, 10, 32)
+                    ^ rotate_left(iB, 18, 32) ^ rotate_left(iB, 24, 32);
         return int_to_bytes(ilB);
     }
 
@@ -89,8 +89,13 @@ public class LFunc {
     public static void main(String[] args) {
         try {
             // Example from pdf: A:f0 02 c3 9e
-            byte[] LB = L(new byte[]{(byte) 0xf0, 0x02, (byte) 0xc3, (byte) 0x9e});
-            String str_LB = L_str(new byte[]{(byte) 0xf0, 0x02, (byte) 0xc3, (byte) 0x9e});
+//            byte[] LB = L(new byte[]{(byte) 0xf0, 0x02, (byte) 0xc3, (byte) 0x9e});
+            // 1th:
+//            System.out.println(L_str(new byte[]{(byte) 0xf0, 0x02, (byte) 0xc3, (byte) 0x9e}));
+            System.out.println(L_str(new byte[]{(byte) 0xc1, (byte)0x00, (byte) 0x00, (byte) 0x00}));
+            System.out.println(L_str(new byte[]{(byte) 0x80, (byte)0x00, (byte) 0x00, (byte) 0x00}));
+            // 2th
+//            System.out.println(L_str(new byte[]{(byte) 0x0, 0x0, (byte) 0xa, (byte) 0x5}));
         } catch (Exception e) {
             e.printStackTrace();
         }
