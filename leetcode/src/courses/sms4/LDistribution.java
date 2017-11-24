@@ -64,7 +64,7 @@ public class LDistribution {
         }
 
         // index < 4
-        for(int i = 0; i < 255; i++){
+        for(int i = 0; i <= 255; i++){
             bytes[index] = (byte)i;
             dfs(index+1, bytes);
             bytes[index] = 0;
