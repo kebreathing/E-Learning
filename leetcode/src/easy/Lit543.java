@@ -1,5 +1,7 @@
 package easy;
 
+import medium.TreeNode;
+
 /**
  * @author Chris 龙东恒
  * @mail kebreathing@gmail.com

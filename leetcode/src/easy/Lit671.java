@@ -1,6 +1,8 @@
 package easy;
 
 
+import medium.TreeNode;
+
 public class Lit671 {
 
     public int findSecondMinimumValue(TreeNode root) {

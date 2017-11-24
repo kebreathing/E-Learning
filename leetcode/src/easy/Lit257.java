@@ -1,5 +1,7 @@
 package easy;
 
+import medium.TreeNode;
+
 import java.util.LinkedList;
 import java.util.List;
 

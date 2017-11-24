@@ -6,7 +6,7 @@ package medium;
  * @date 2017/11/23 10:19
  */
 public class TreeNode {
-    int val;
+    public int val;
     public TreeNode left;
     public TreeNode right;
     public TreeNode(int x) { val = x; }
