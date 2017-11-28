@@ -1,5 +1,7 @@
 package courses.mq;
 
+import courses.mq.interfaces.ByteMessage;
+
 /**
  * Created by yangxiao on 2017/11/14.
  */

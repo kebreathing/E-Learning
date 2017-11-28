@@ -1,5 +1,7 @@
 package courses.mq;
 
+import courses.mq.interfaces.ByteMessage;
+
 import java.util.Collection;
 
 /**
@@ -7,9 +9,11 @@ import java.util.Collection;
  */
 
 public class Consumer {
+
     public void attachQueue(String queueName, Collection<String> topics) throws Exception {
 
     }
+
     public ByteMessage poll()throws Exception{
         return null;
     }

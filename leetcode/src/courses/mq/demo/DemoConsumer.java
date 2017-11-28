@@ -1,8 +1,7 @@
 package courses.mq.demo;
 
-import pku.ByteMessage;
-import pku.Consumer;
-import pku.DefaultMessage;
+import courses.mq.interfaces.ByteMessage;
+import courses.mq.Consumer;
 
 import java.util.Collection;
 import java.util.LinkedList;

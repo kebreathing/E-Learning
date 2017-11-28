@@ -1,7 +1,6 @@
 package courses.mq.demo;
 
-import pku.ByteMessage;
-import pku.DefaultMessage;
+import courses.mq.interfaces.ByteMessage;
 
 import java.util.ArrayList;
 import java.util.HashMap;

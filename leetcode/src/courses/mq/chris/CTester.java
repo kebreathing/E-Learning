@@ -1,23 +1,20 @@
-package courses.mq.demo;
+package courses.mq.chris;
 
-import java.util.List;
-
-import courses.mq.interfaces.ByteMessage;
 import courses.mq.Consumer;
 import courses.mq.MessageHeader;
 import courses.mq.Producer;
+import courses.mq.interfaces.ByteMessage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Created by yangxiao on 2017/11/14.
- * 这个程序演示了测评程序的基本逻辑
- * 正式的测评程序会比这个更复杂
+ * 测试函数
  */
-public class DemoTester {
+public class CTester {
     //每个pusher向每个topic发送的消息数目
     static int PUSH_COUNT = 1000;
     //发送消息的线程数
@@ -40,7 +37,7 @@ public class DemoTester {
     static class PushTester implements Runnable {
         //随机向以下topic发送消息
         List<String> topics = new ArrayList<>();
-        Producer producer = new DemoProducer();
+        Producer producer = new CProducer();
         int id;
 
         PushTester(List<String> t, int id) {
@@ -90,7 +87,7 @@ public class DemoTester {
         //拉消息
         String queue;
         List<String> topics = new ArrayList<>();
-        Consumer consumer = new DemoConsumer();
+        Consumer consumer = new CConsumer();
         int pc = 0;
 
         /**
@@ -129,10 +126,10 @@ public class DemoTester {
                         byte[] data = msg.getBody();
                         String str = new String(data);
                         String[] strs = str.split(" ");
-                        String topic = strs[0];
-                        String prod = strs[1];
+                        String topic = strs[0]; // 消息类型
+                        String prod = strs[1];  // 生产者编号
 
-                        int j = Integer.parseInt(strs[2]);
+                        int j = Integer.parseInt(strs[2]); // j 序号
                         String mapkey = topic + " " + prod;
                         if (!posTable.containsKey(mapkey)) {
                             posTable.put(mapkey, 0);
@@ -167,8 +164,7 @@ public class DemoTester {
     public static void main(String args[]) {
         try {
             //topic的名字是topic+序号的形式
-            DemoMessageStore store = DemoMessageStore.store
-                    ;
+            CStore store = CStore.instance;
             System.out.println("开始push");
             long time1 = System.currentTimeMillis();
             Random rand = new Random(0);

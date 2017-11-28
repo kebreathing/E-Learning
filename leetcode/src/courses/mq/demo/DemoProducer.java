@@ -1,10 +1,8 @@
 package courses.mq.demo;
 
-
-import pku.ByteMessage;
-import pku.DefaultMessage;
-import pku.MessageHeader;
-import pku.Producer;
+import courses.mq.interfaces.ByteMessage;
+import courses.mq.MessageHeader;
+import courses.mq.Producer;
 
 /**
  * Created by yangxiao on 2017/11/14.

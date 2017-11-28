@@ -1,4 +1,4 @@
-package courses;
+package courses.nf;
 import java.util.LinkedList;
 import java.util.List;
 /**

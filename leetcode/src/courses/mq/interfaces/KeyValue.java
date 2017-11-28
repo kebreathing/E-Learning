@@ -1,4 +1,4 @@
-package courses.mq;
+package courses.mq.interfaces;
 
 import java.util.HashMap;
 import java.util.Set;

@@ -1,4 +1,6 @@
-package courses.mq;
+package courses.mq.demo;
+
+import courses.mq.interfaces.KeyValue;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -7,7 +9,8 @@ import java.util.Set;
  * Created by yangxiao on 2017/11/14.
  * 一个Key-Value的实现
  */
-public class DefaultKeyValue implements KeyValue{
+public class DefaultKeyValue implements KeyValue {
+
     private final HashMap<String, Object> kvs = new HashMap<>();
 
     public Object getObj(String key) {

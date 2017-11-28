@@ -1,4 +1,4 @@
-package courses;
+package courses.f28;
 
 public class Mod {
 
