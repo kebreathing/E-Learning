@@ -29,13 +29,6 @@ public class LFunc {
             throw new Exception("The length of a word must be 4.");
         }
 
-        // 获得 S-Box 中的替换结果
-//        byte[] B = new byte[4];
-//        for (int i = 0; i < word.length; i++) {
-//            int[] rc = high4_low4(word[i]);
-//            B[i] = SBox.getByte(rc[0], rc[1]);
-//        }
-
         byte[] B = word;
         // 字节拼接成字： 4 bytes -> 1 word -> 32 bits int
         int iB = bytes_to_int(B);
@@ -46,17 +39,45 @@ public class LFunc {
         return int_to_bytes(ilB);
     }
 
+
+    /**
+     * 带Sbox转换的
+     * @param word
+     * @return
+     * @throws Exception
+     */
+    public static byte[] L_with_sbox(byte[] word) throws Exception {
+        if (word == null || word.length != 4) {
+            throw new Exception("The length of a word must be 4.");
+        }
+
+        // 获得 S-Box 中的替换结果
+        byte[] B = new byte[4];
+        for (int i = 0; i < word.length; i++) {
+            int[] rc = high4_low4(word[i]);
+            B[i] = SBox.getByte(rc[0], rc[1]);
+        }
+
+        // 字节拼接成字： 4 bytes -> 1 word -> 32 bits int
+        int iB = bytes_to_int(B);
+
+        // 循环移位和异或操作
+        int ilB = iB ^rotate_left(iB, 2, 32) ^ rotate_left(iB, 10, 32)
+                ^ rotate_left(iB, 18, 32) ^ rotate_left(iB, 24, 32);
+        return int_to_bytes(ilB);
+    }
+
     /** 循环左移 offset 位
     * 左移offset位，len - offset 将以 0 填充
     * 无符号右移动，填充刚才的 0 位置
     * | 连接
      * */
-    public static int rotate_left(int iB, int offset, int lenBits) {
+    private static int rotate_left(int iB, int offset, int lenBits) {
         return (iB << offset) | (iB >>> (lenBits - offset));
     }
 
     // 将32位的int 输出成4个8bits的byte
-    public static byte[] int_to_bytes(int n) {
+    private static byte[] int_to_bytes(int n) {
         byte[] bytes = new byte[4];
         bytes[0] = (byte) ((n >> 24) & (0xff));
         bytes[1] = (byte) ((n >> 16) & (0xff));
@@ -66,7 +87,7 @@ public class LFunc {
     }
 
     // 移位,做异或，得到32bits int -> 组成32位字，为了进行循环左移
-    public static int bytes_to_int(byte[] B) {
+    private static int bytes_to_int(byte[] B) {
         // &0xff将byte值无差异转成int,避免Java自动类型提升后,会保留高位的符号位
         int b0 = (B[0] & 0xff) << 24;
         int b1 = (B[1] & 0xff) << 16;
@@ -77,7 +98,7 @@ public class LFunc {
     }
 
     // 获得 byte 字节的高4位和低4位 -> S盒替代
-    public static int[] high4_low4(byte b) {
+    private static int[] high4_low4(byte b) {
         int low = 0, high = 0;
         for (int i = 3, j = 7; i >= 0; i--, j--) {
             low = (low << 1) | (((b & 0xff) >> i) & 0x1);
@@ -86,7 +107,7 @@ public class LFunc {
         return new int[]{high, low};
     }
 
-    public static void main(String[] args) {
+    private static void main(String[] args) {
         try {
             // Example from pdf: A:f0 02 c3 9e
 //            byte[] LB = L(new byte[]{(byte) 0xf0, 0x02, (byte) 0xc3, (byte) 0x9e});

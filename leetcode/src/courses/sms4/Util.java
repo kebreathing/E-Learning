@@ -4,28 +4,22 @@ public class Util {
 
     final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
 
-    // 输出每个字节
-    public static void printBytes(byte[] B) {
-        for (byte b : B)
-            printByte(b);
-    }
-
     // 输出单个int的32个比特位
-    public static void printInt(int a) {
+    public static String printInt(int a) {
         String str = "";
         for (int i = 31; i >= 0; i--) {
             str = str + (byte) ((a >> i) & 0x1);
         }
-        System.out.println(str);
+        return str;
     }
 
     // 打印单个byte的8个比特位
-    public static void printByte(byte b) {
+    public static String printByte(byte b) {
         String str = "";
         for (int i = 7; i >= 0; i--) {
             str = str + (byte) ((b >> i) & 0x1);
         }
-        System.out.println(str);
+        return str;
     }
 
     // 以16进制的形式输出结果
