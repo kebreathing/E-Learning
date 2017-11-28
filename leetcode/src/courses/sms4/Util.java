@@ -41,4 +41,8 @@ public class Util {
             System.out.println();
         }
     }
+
+    public static void printHead(String head){
+        System.out.println(head);
+    }
 }

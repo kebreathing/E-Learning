@@ -5,7 +5,7 @@ package courses.sms4;
  * @mail kebreathing@gmail.com
  * @date 2017/11/24 10:56
  */
-public class LFunc {
+public class LFunction {
     // 前面部分以1填充, 后面部分以0填充
 
     /**
@@ -39,6 +39,10 @@ public class LFunc {
         return int_to_bytes(ilB);
     }
 
+
+    public static String L_with_sbox_str(byte[] word) throws Exception{
+        return Util.bytesToHex(L_with_sbox(word));
+    }
 
     /**
      * 带Sbox转换的
