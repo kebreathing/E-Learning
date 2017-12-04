@@ -79,7 +79,8 @@ public class Lit51 {
 
     public static void main(String[] args){
         Lit51 lit = new Lit51();
-        System.out.println(lit.solveNQueens(4));
+//        System.out.println(lit.solveNQueens(4));
+        System.out.println(lit.solveNQueens(8).size());
     }
 
 }

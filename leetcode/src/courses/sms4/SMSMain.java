@@ -18,8 +18,9 @@ public class SMSMain {
                     "\tbyte[]元素：例如(byte)0x00，0x表示16进制，后两位00为十进制0的16进制表示;\n" +
                     "\tbyte数组实例：new byte[]{(byte)0x01, (byte)0x02, (byte)0x03, (byte)0x04}.");
             String LB_str = LFunction.L_str(new byte[]{(byte) 0xc1, (byte) 0x00, (byte) 0x00, (byte) 0x00});
-//            String LB_str = LFunction.L_with_sbox_str(new byte[]{(byte) 0xc1, (byte) 0x00, (byte) 0x00, (byte) 0x00});
-            System.out.println("变换结果为：" + LB_str);
+            System.out.println("{c1000000}变换结果为：" + LB_str);
+            String LB_str2 = LFunction.L_str(new byte[]{(byte) 0x80, (byte) 0x00, (byte) 0x00, (byte) 0x00});
+            System.out.println("{80000000}变换结果为：" + LB_str2);
 
             // 第二题
             LDistribution ld = new LDistribution();
